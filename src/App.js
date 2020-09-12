@@ -2,9 +2,9 @@
 import React from 'react';
 
 
-function App () {
+const App = () => {
     return (
-        <h1 className="title">
+        <h1>
             Hello World <i>What a nice day</i>
         </h1>
     );
