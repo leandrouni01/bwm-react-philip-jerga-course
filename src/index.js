@@ -7,4 +7,12 @@ import './index.css';
 //const helloWorldElement = React.createElement('h1', {className: 'title'}, 'Hello World', h2Element);
 const rootElement = document.getElementById('root');
 
-ReactDOM.render(<h1 className="title">Hello World <i>What a nice day</i></h1>, rootElement);
+function App () {
+    return (
+        <h1 className="title">
+            Hello World <i>What a nice day</i>
+        </h1>
+    );
+}
+
+ReactDOM.render(<App />, rootElement);
