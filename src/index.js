@@ -7,12 +7,12 @@ import './index.css';
 //const helloWorldElement = React.createElement('h1', {className: 'title'}, 'Hello World', h2Element);
 const rootElement = document.getElementById('root');
 
-function App () {
+function App (props) {
     return (
-        <h1 className="title">
+        <h1 className={props.className}>
             Hello World <i>What a nice day</i>
         </h1>
     );
 }
 
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(React.createElement(App, {className: "title"}), rootElement);
