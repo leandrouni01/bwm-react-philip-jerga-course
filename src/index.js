@@ -1,8 +1,10 @@
 
 import ReactDOM from 'react-dom';
 import React from 'react';
+import './index.css';
 
-const helloWorldElement = React.createElement('h1', null, 'Hello World');
+const h2Element = React.createElement('i', null,' What a nice day');
+const helloWorldElement = React.createElement('h1', {className: 'title'}, 'Hello World', h2Element);
 const rootElement = document.getElementById('root');
 
 ReactDOM.render(helloWorldElement, rootElement);
