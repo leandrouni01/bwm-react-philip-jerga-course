@@ -1,10 +1,9 @@
+import React, { useState } from "react";
+import propTypes from "prop-types";
+import "./CounterApp.css";
+import CounterView from "./CounterView";
 
 
-import React , {useState} from 'react';
-import propTypes from 'prop-types';
-import './CounterApp.css';
-
-/*
 const CounterApp = (props) => {
 
   const [count, setCount] = useState(0);
@@ -17,9 +16,10 @@ const CounterApp = (props) => {
       <h2>Hello World</h2>
       <div className="counter-app">
         <h1>{title}</h1>
-        <h2 className="value"> {count} </h2>
-        <button onClick={mutateCount(-1)}>Decrement</button>
-        <button onClick={mutateCount(1)}>Increment</button>
+        <CounterView 
+        countValue={count}
+        handleIncrement={mutateCount}
+        />
       </div>
     </div>
   )
@@ -27,40 +27,7 @@ const CounterApp = (props) => {
 
 CounterApp.propTypes = {
 title: propTypes.string.isRequired
-};*/
-
-
-class CounterApp extends React.Component {
-
-  state = {
-    count: 0
-  }
-
-  mutateCount = (step) => {
-    this.setState({
-      count: this.state.count + step
-    });
-  }
-
-  render() {
-    const { count } = this.state;
-    const { title } = this.props;
-    return (
-      <div>
-        <h2>Hello World</h2>
-        <div className="counter-app">
-        <h1>{title}</h1>
-        <h2 className="value"> {count} </h2>
-          <button onClick={() => this.mutateCount(-1)}>Decrement</button>
-          <button onClick={() => this.mutateCount(1)}>Increment</button>
-        </div>
-      </div>
-    )
-  }
-}
-
-CounterApp.propTypes = {
-  title: propTypes.string.isRequired
 };
+
 
 export default CounterApp;
