@@ -1,18 +1,14 @@
 
 
 import React , {useState} from 'react';
+import propTypes from 'prop-types';
 import './CounterApp.css';
 
-/*
-const CounterApp = () => {
+
+const CounterApp = (props) => {
 
   const [count, setCount] = useState(0);
-  /* this is the same as writing this:
-  * const stateArray = useState(0);
-  * const count = stateArray[0];
-  * const setCount = stateArray[1];
-  *
-
+  const { title } = props;
 
   const mutateCount = (step) => ()=> setCount(count + step);
 
@@ -20,16 +16,20 @@ const CounterApp = () => {
     <div>
       <h2>Hello World</h2>
       <div className="counter-app">
-        <h1 className="value">
-          {count}
-        </h1>
+        <h1>{title}</h1>
+        <h2 className="value"> {count} </h2>
         <button onClick={mutateCount(-1)}>Decrement</button>
         <button onClick={mutateCount(1)}>Increment</button>
       </div>
     </div>
   )
-}*/
+}
 
+CounterApp.propTypes = {
+title: propTypes.string.isRequired
+};
+
+/*
 class CounterApp extends React.Component {
 
   state = {
@@ -56,6 +56,6 @@ class CounterApp extends React.Component {
       </div>
     )
   }
-}
+}*/
 
 export default CounterApp;

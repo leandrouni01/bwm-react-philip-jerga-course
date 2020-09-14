@@ -5,7 +5,7 @@ import CounterApp from './components/CounterApp/CounterApp';
 
 const App = () => {
     return (
-        <CounterApp></CounterApp>
+        <CounterApp title="Counter App"/>
     );
 }
 
