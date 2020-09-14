@@ -36,15 +36,9 @@ class CounterApp extends React.Component {
     count: 0
   }
 
-  incrementCount = () => {
+  mutateCount = (step) => {
     this.setState({
-      count: this.state.count + 1
-    });
-  }
-
-  decrementCount = () => {
-    this.setState({
-      count: this.state.count - 1
+      count: this.state.count + step
     });
   }
 
@@ -56,8 +50,8 @@ class CounterApp extends React.Component {
           <h1 className="value">
             {this.state.count}
           </h1>
-          <button onClick={this.decrementCount}>Decrement</button>
-          <button onClick={this.incrementCount}>Increment</button>
+          <button onClick={() => this.mutateCount(-1)}>Decrement</button>
+          <button onClick={() => this.mutateCount(1)}>Increment</button>
         </div>
       </div>
     )
