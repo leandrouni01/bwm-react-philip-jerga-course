@@ -22,4 +22,7 @@ useEffect(() => {
   );
 };
 
-export default CounterView;
+export default React.memo(CounterView);
+
+// React.memo prevents the re-rendering of a component if none of the props passed to it 
+// have changed (use in case of a everly updated component)
