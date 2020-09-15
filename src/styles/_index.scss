@@ -3,9 +3,27 @@
 @import './_header.scss';
 @import './rental-home';
 
+html, body {
+  height: 100%;
+}
+
 body {
   background-color: #caaaaa;
   color: #202020;
+}
+
+.type- {
+
+  &condo {
+    color: #a72da3;
+  }
+
+  &apartment {
+    color: #bf1818;
+  }
+  &house {
+    color: #d68000;
+  }
 }
 
 .navbar-dark {
