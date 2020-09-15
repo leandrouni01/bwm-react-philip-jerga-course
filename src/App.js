@@ -1,34 +1,19 @@
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Routes from './Routes'
 
-import React from 'react';
-import Header from './components/shared/Header'
-import RentalHome from './pages/RentalHome';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Header from "./components/shared/Header";
 
 
 const App = () => {
-
-    const renderPages = () => {
-        const {pathname} = window.location;
-
-        switch (pathname) {
-            case '/': 
-                return <RentalHome />;
-            case '/Login': 
-                return <Login />;
-            case '/Register': 
-                return <Register />
-            default: 
-                return <RentalHome />;
-        }
-    }
-
-    return (
-        <div>
-            <Header />
-            {renderPages()}
-        </div>
-    );
-}
+  return (
+    <div>
+      <Router>
+        <Header />
+        <Routes />
+      </Router>
+    </div>
+  );
+};
 
 export default App;
