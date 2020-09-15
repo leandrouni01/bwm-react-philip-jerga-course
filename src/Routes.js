@@ -9,14 +9,14 @@ const Routes = () => {
   return (
     <div className="container bwm-container">
       <Switch>
-        <Route exact path="/">
-          <RentalHome />
-        </Route>
         <Route path="/login">
           <Login />
         </Route>
         <Route path="/register">
           <Register />
+        </Route>
+        <Route path="/">
+          <RentalHome />
         </Route>
       </Switch>
     </div>

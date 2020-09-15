@@ -4,15 +4,18 @@ import Routes from './Routes'
 
 import Header from "./components/shared/Header";
 
+import  { StateContext } from './state-context';
+import store from './store';
+
 
 const App = () => {
   return (
-    <div>
+    <StateContext.Provider value={store} >
       <Router>
         <Header />
         <Routes />
       </Router>
-    </div>
+    </StateContext.Provider>
   );
 };
 
