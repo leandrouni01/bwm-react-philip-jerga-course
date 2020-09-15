@@ -1,0 +1,35 @@
+
+@import './colors';
+@import "./_header.scss";
+
+body {
+  background-color: #caaaaa;
+  color: #202020;
+}
+
+.navbar-dark {
+  .navbar-nav {
+    .nav-link {
+      &:focus,
+      &:hover:not(.active) {
+        color: #26cdfb;
+      }
+    }
+  }
+}
+
+.btn {
+  &.btn-bwm-main {
+    border-color: #61dafb;
+    color: $main-app-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: #2bc8f3;
+      border-color: $main-app-color;
+      color: whitesmoke;
+      box-shadow: none;
+    }
+  }
+}
