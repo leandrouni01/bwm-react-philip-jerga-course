@@ -42,4 +42,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(RentalHome, mapStateToProps);
+export default connect(mapStateToProps)(RentalHome);
