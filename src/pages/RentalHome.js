@@ -1,7 +1,7 @@
 import React from "react";
 import RentalCard from "../components/rental/RentalCard";
 
-import connect from '../store/conect';
+import connect from '../store/connect';
 
 class RentalHome extends React.Component {
 
