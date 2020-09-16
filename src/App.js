@@ -5,8 +5,9 @@ import Routes from './Routes'
 import Header from "./components/shared/Header";
 
 import  { StateContext } from './state-context';
-import store from './store';
+import { initStore } from './store';
 
+const store = initStore();
 
 const App = () => {
   return (

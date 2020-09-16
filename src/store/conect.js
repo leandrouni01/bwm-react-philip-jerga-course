@@ -5,8 +5,10 @@ import { StateContext } from "../state-context";
 const connect = selectStates => Component => {
     class Connect extends React.Component {
         render() {
-            const states = selectStates(this.context);
-            return <Component {...states}></Component>
+            
+            const states = this.context.getState();
+            const slice = selectStates(states);
+            return <Component {...slice}></Component>
         }
     }
     Connect.contextType = StateContext;
