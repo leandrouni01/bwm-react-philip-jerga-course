@@ -16,5 +16,5 @@ export function initStore() {
         }
     });
 
-    return createStore(reducers);
+    return createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 }

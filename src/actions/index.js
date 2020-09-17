@@ -6,4 +6,11 @@ export const fetchRentals = () => {
         type: 'FETCH_RENTALS',
         rentals: rentalData
     }
-}
+};
+
+export const createRental = (newRental) =>{
+    return {
+        type: 'CREATE_RENTALS',
+        newRental
+    }
+};
