@@ -5,13 +5,9 @@ import connect from '../store/connect';
 
 class RentalHome extends React.Component {
 
-  state = {
-    rentals: []
-  }
 
   componentDidMount() {
-    const { rentals } = this.props;
-    this.setState({ rentals });
+    this.props.dispatch({type: 'FETCH_RENTALS'});
   }
 
   renderRentals = rentals => 
@@ -23,7 +19,7 @@ class RentalHome extends React.Component {
   
 
   render() {
-    const  { rentals }  = this.state;
+    const  { rentals }  = this.props;
 
     return (
       <div className="card-list">
