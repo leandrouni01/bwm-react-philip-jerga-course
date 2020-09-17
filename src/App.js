@@ -4,7 +4,7 @@ import Routes from './Routes'
 
 import Header from "./components/shared/Header";
 
-import  { Provider } from './store/Provider';
+import  { Provider } from 'react-redux';
 import { initStore } from './store';
 
 const store = initStore();
