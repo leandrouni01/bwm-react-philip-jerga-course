@@ -2,6 +2,7 @@
 @import './colors';
 @import './_header.scss';
 @import './rental-home';
+@import './rentalDetails';
 
 html, body {
   height: 100%;
@@ -54,5 +55,14 @@ body {
       color: whitesmoke;
       box-shadow: none;
     }
+  }
+}
+
+.rental-link {
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+    color: inherit;
   }
 }
