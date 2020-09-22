@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchRentalById } from '../actions';
+import { capitalize } from '../helpers/functions';
 
 class RentalDetail extends React.Component {
 
@@ -34,7 +35,7 @@ class RentalDetail extends React.Component {
               <div className="rental">
                 <h2 className={`rental-type type-${rental.category}`}>{rental.shared ? 'Shared' : 'Whole'} {rental.category}</h2>
                 <h1 className="rental-title">{rental.title}</h1>
-                <h2 className="rental-city">{rental.city}</h2>
+                <h2 className="rental-city">{capitalize(rental.city)}</h2>
                 <div className="rental-room-info">
                   <span>
                     <i className="fa fa-building"></i>{`${rental.numOfRooms} ${rental.numOfRooms > 1 ? 'bedrooms' : 'bedroom'}`}
