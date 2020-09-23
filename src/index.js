@@ -5,7 +5,10 @@ import App from './App';
 
 
 import './index.scss';
-import 'bootstrap/dist/js/bootstrap.js'
+import 'bootstrap/dist/js/bootstrap.js';
+
+// eslint-disable-next-line
+import library from './fontAwesome';
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(React.createElement(App,null,null), rootElement);

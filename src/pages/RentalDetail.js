@@ -1,8 +1,9 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchRentalById } from '../actions';
-import { capitalize } from '../helpers/functions';
+import { fetchRentalById } from 'actions';
+import { capitalize } from 'helpers/functions';
 
 class RentalDetail extends React.Component {
 
@@ -38,13 +39,13 @@ class RentalDetail extends React.Component {
                 <h2 className="rental-city">{capitalize(rental.city)}</h2>
                 <div className="rental-room-info">
                   <span>
-                    <i className="fa fa-building"></i>{`${rental.numOfRooms} ${rental.numOfRooms > 1 ? 'bedrooms' : 'bedroom'}`}
+                    <FontAwesomeIcon icon='building'/>{`${rental.numOfRooms} ${rental.numOfRooms > 1 ? 'bedrooms' : 'bedroom'}`}
                   </span>
                   <span>
-                    <i className="fa fa-user"></i> {rental.numOfRooms + 4} guests
+                    <FontAwesomeIcon icon='user'/> {rental.numOfRooms + 4} guests
                   </span>
                   <span>
-                    <i className="fa fa-bed"></i> {rental.numOfRooms + 2} beds
+                    <FontAwesomeIcon icon='bed'/> {rental.numOfRooms + 2} beds
                   </span>
                 </div>
                 <p className="rental-description">{rental.description}</p>
@@ -54,24 +55,24 @@ class RentalDetail extends React.Component {
                   <div className="row">
                     <div className="col-md-6">
                       <span>
-                        <i className="fa fa-asterisk"></i> Cooling
+                        <FontAwesomeIcon icon='asterisk'/> Cooling
                       </span>
                       <span>
-                        <i className="fa fa-thermometer"></i> Heating
+                        <FontAwesomeIcon icon='thermometer'/> Heating
                       </span>
                       <span>
-                        <i className="fa fa-location-arrow"></i> Iron
+                        <FontAwesomeIcon icon='location-arrow'/> Iron
                       </span>
                     </div>
                     <div className="col-md-6">
                       <span>
-                        <i className="fa fa-desktop"></i> Working area
+                        <FontAwesomeIcon icon='desktop'/> Working area
                       </span>
                       <span>
-                        <i className="fa fa-cube"></i> Washing machine
+                        <FontAwesomeIcon icon='archive'/> Washing machine
                       </span>
                       <span>
-                        <i className="fa fa-cube"></i> Dishwasher
+                        <FontAwesomeIcon icon='soap'/> Dishwasher
                       </span>
                     </div>
                   </div>
