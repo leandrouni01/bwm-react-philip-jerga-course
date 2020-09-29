@@ -1,15 +1,18 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const config = require('./config/dev');
 
 const mongoose = require('mongoose');
 
+//Routes
 const rentalRoutes = require('./routes/rentals');
+//Models
+const Rentals = require('./models/rental');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const DBURI = 'mongodb+srv://test:testtest@bwm-new.wlkrb.mongodb.net/bwm-new-dev?retryWrites=true&w=majority';
 
-mongoose.connect(DBURI, {
+mongoose.connect(config.DB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,

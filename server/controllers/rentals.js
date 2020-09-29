@@ -1,58 +1,35 @@
-const rentals = [
-  { _id: "DG2D4F3SS54", city: "New York", title: "Very nice place" },
-  { _id: "G21G3S5354D", city: "Berlin", title: "Very nice place as well!" },
-];
+const Rental = require('../models/rental');
 
 exports.getRentals = (req, res) => {
-  return res.json(rentals);
+  Rental.find({}, (err, foundRentals) => {
+    if (err) {
+      return res.status(422).send([{title: 'Rental Error', message: 'Cannot retrieve rental data'}])
+    }
+
+    return res.json(foundRentals);
+  });
 };
 
 exports.getRentalById = (req, res) => {
-  const rental = rentals.find((r) => r._id === req.params.rentalId);
+  const {rentalId} = req.params;
+  Rental.findById(rentalId, (err , foundRental) => {
+    if (err) {
+      return res.status(422).send([{title: 'Rental Error', message: 'Cannot retrieve rental data'}])
+    }
 
-  return res.json(rental);
+    return res.json(foundRental);
+  });
 };
 
 exports.createRental = (req, res) => {
   const rentalData = req.body;
-  rentals.push(rentalData);
 
-  return res.json({ message: `Rental with id: ${rentalData._id} was added` });
-};
-
-exports.deleteRental = (req, res) => {
-  const rIndex = rentals.findIndex(
-    (rental) => rental._id === req.params.rentalId
-  );
-  if (rIndex != -1) {
-    const deletedRental = rentals.splice(rIndex, 1)[0];
-    return res.json({
-      message: `The rental with id of ${deletedRental._id} was deleted`,
-    });
-  } else {
-    return res.json({
-      message: `The rental with id of ${req.params.rentalId} was not found`,
-    });
-  }
-};
-
-exports.updateRental = (req, res) => {
-  const { rentalId } = req.params;
-  const rIndex = rentals.findIndex((rental) => rental._id === rentalId);
-  if (rIndex != -1) {
-    const newRental = req.body;
-    if (newRental.city) {
-      rentals[rIndex].city = newRental.city;
+  newRental.create(rentalData, (err, createdRental) => {
+    if (err) {
+      return res.status(422).send([{title: 'Rental Error', message: 'Cannot retrieve rental data'}])
     }
-    if (newRental.title) {
-      rentals[rIndex].title = newRental.title;
-    }
-    return res.json({
-      message: `The rental with id of ${rentalId} was updated`,
-    });
-  } else {
-    return res.json({
-      message: `The rental with id of ${rentalId} was not found`,
-    });
-  }
+
+    return res.json({ message: `Rental with id: ${createdRental._id} was added` });
+  });
 };
+
