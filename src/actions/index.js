@@ -11,7 +11,8 @@ export const fetchRentals = () => (dispatch) =>
         })
     });
 
-export const fetchRentalById = (rentalId) => (dispatch) => 
+export const fetchRentalById = (rentalId) => (dispatch) => {
+    dispatch({type: 'IS_FETCHING_RENTAL'});
     axios.get(`http://localhost:3000/api/v1/rentals/${rentalId}`)
     .then(res => {
         const rental =  res.data;
@@ -19,7 +20,8 @@ export const fetchRentalById = (rentalId) => (dispatch) =>
             type: 'FETCH_RENTAL_BY_ID',
             rental
         })
-    });
+    })
+};
 
 export const createRental = (newRental) =>{
     return {

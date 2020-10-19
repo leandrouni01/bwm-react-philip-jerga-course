@@ -13,18 +13,16 @@ class RentalDetail extends React.Component {
   }
 
   render() {
-    const { rental } = this.props;
-
+    const { rental, isFetching } = this.props;
+    if (isFetching) return null;
     return (
       <section id="rentalDetails">
         <div className="upper-section">
           <div className="row">
             <div className="col-md-6">
-              {/* <!-- TODO: Display rental image --> */}
               <img src={rental.image} alt={rental.title} />
             </div>
             <div className="col-md-6">
-              {/* <!-- TODO: Display rental image --> */}
               <img src={rental.image} alt={rental.title} />
             </div>
           </div>
@@ -87,7 +85,7 @@ class RentalDetail extends React.Component {
   }
 }
 
-const mapStateToProps = ( { rental } ) => ( { rental } );
+const mapStateToProps = ( { rental } ) => ( { rental: rental.item, isFetching: rental.isFetching} );
 
 
 const rentalDetailWithRouter = withRouter(RentalDetail);
