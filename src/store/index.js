@@ -10,5 +10,25 @@ export function initStore() {
         rental
     });
 
-    return createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+    const addPromiseToDispatch = (store) => {
+        const { dispatch } = store;
+
+
+        return function (action) {
+
+            if (action.then && typeof action.then === "function") {
+                return action.then( (action) => {
+                    dispatch(action);
+                })
+            }
+            dispatch(action);
+        }
+    }
+
+    const reduxExtention = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+    const store = createStore(reducers, reduxExtention);
+
+    store.dispatch = addPromiseToDispatch(store);
+
+    return store; 
 }
