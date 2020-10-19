@@ -1,6 +1,7 @@
 
 
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import rentals from './reducers/rentals';
 import rental from './reducers/rental';
 
@@ -9,7 +10,7 @@ export function initStore() {
         rentals,
         rental
     });
-
+/*
     const addPromiseToDispatch = (store) => {
         const { dispatch } = store;
 
@@ -34,13 +35,14 @@ export function initStore() {
             }
             dispatch(action);
         }
-    }
+    }*/
 
-    const reduxExtention = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
-    const store = createStore(reducers, reduxExtention);
-
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+    const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
+    /*
     store.dispatch = addPromiseToDispatch(store);
     store.dispatch = addThunkToDispatch(store);
+    */
 
     return store; 
 }

@@ -11,14 +11,15 @@ export const fetchRentals = () => (dispatch) =>
         })
     });
 
-export const fetchRentalById = (rentalId) => {
-    const rental = {}
-
-    return {
-        type: 'FETCH_RENTAL_BY_ID',
-        rental
-    }
-};
+export const fetchRentalById = (rentalId) => (dispatch) => 
+    axios.get(`http://localhost:3000/api/v1/rentals/${rentalId}`)
+    .then(res => {
+        const rental =  res.data;
+        dispatch({
+            type: 'FETCH_RENTAL_BY_ID',
+            rental
+        })
+    });
 
 export const createRental = (newRental) =>{
     return {
