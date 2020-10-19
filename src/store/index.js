@@ -13,7 +13,6 @@ export function initStore() {
     const addPromiseToDispatch = (store) => {
         const { dispatch } = store;
 
-
         return function (action) {
 
             if (action.then && typeof action.then === "function") {
@@ -25,10 +24,23 @@ export function initStore() {
         }
     }
 
+    const addThunkToDispatch = (store) => {
+        const { dispatch } = store;
+
+        return function (action) {
+
+            if (typeof action === "function") {
+                return action(dispatch);
+            }
+            dispatch(action);
+        }
+    }
+
     const reduxExtention = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
     const store = createStore(reducers, reduxExtention);
 
     store.dispatch = addPromiseToDispatch(store);
+    store.dispatch = addThunkToDispatch(store);
 
     return store; 
 }
