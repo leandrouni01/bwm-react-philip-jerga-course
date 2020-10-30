@@ -1,3 +1,4 @@
+import LoginForm from "components/forms/LoginForm";
 import React from "react";
 
 class Login extends React.Component {
@@ -6,13 +7,8 @@ class Login extends React.Component {
     password: "",
   };
 
-  handdleInputChange = (event) => {
-    const { value, name } = event.target;
-    this.setState({ [name]: value });
-  };
-
-  handleSubmit = () => {
-    alert(JSON.stringify(this.state));
+  loginUser = (loginData) => {
+    alert(JSON.stringify(loginData));
   };
 
   render() {
@@ -24,43 +20,7 @@ class Login extends React.Component {
             {/* <!-- <div className="alert alert-success">
                 Some message
                 </div> --> */}
-            <form>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  onChange={this.handdleInputChange}
-                  name="email"
-                  type="email"
-                  className="form-control"
-                  id="email"
-                />
-                {/* <div className="alert alert-danger">
-            <div>
-              Email is required.
-            </div>
-            <div>
-              Must be valid email format!
-            </div>
-          </div> */}
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
-                  onChange={this.handdleInputChange}
-                  name="password"
-                  type="password"
-                  className="form-control"
-                  id="password"
-                />
-              </div>
-              <button
-                type="button"
-                className="btn btn-bwm-main"
-                onClick={this.handleSubmit}
-              >
-                Submit
-              </button>
-            </form>
+            <LoginForm onSubmit={this.loginUser}/>
             {/* <div className="alert alert-danger">
         <p>
           Some Error
