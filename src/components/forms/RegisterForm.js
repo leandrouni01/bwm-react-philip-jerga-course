@@ -1,9 +1,12 @@
 import React from "react";
-import { useForm } from 'react-hook-form'; 
+import { useForm } from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
+import { sameAs } from "helpers/validators";
+import Error from 'components/shared/FormError';
 
 const RegisterForm = ({onSubmit}) => {
 
-  const { handleSubmit, register, errors } = useForm();
+  const { handleSubmit, register, errors , getValues} = useForm();
 
   //eslint-disable-next-line
   const EMAIL_PATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -17,14 +20,10 @@ const RegisterForm = ({onSubmit}) => {
         type="text" 
         className="form-control" 
         id="username"  
-        ref={register({required: true})}/>
-        {
-          errors.username && (
-            <div className="alert alert-danger">
-              {errors.username.type === "required" && <span>Username is required</span>}
-            </div>
-          )
-        }
+        ref={register({required: "Username is required"})}/>
+        <ErrorMessage as={<Error />} name="username" errors={errors}>
+        {message => <p> { message } </p> }
+        </ErrorMessage>
       </div>
 
       <div className="form-group">
@@ -34,15 +33,13 @@ const RegisterForm = ({onSubmit}) => {
         type="email" 
         className="form-control" 
         id="email"
-        ref={register({required: true, pattern: EMAIL_PATTERN})} />
-        {
-          errors.email && (
-            <div className="alert alert-danger">
-              {errors.email.type === "required" && <span>Email is required</span>}
-              {errors.email.type === "pattern" && <span>Invalid email format</span>}
-            </div>
-          )
-        }
+        ref={register({
+          required: "Email is required", 
+          pattern: {value: EMAIL_PATTERN, message: "Incorrect email format"}})} 
+        />
+        <ErrorMessage as={<Error />} name="email" errors={errors}>
+        {message => <p> { message } </p> }
+        </ErrorMessage>
       </div>
 
       <div className="form-group">
@@ -52,15 +49,13 @@ const RegisterForm = ({onSubmit}) => {
         type="password" 
         className="form-control" 
         id="password" 
-        ref={register({required:true, minLength: 8})}/>
-        {
-          errors.password && (
-            <div className="alert alert-danger">
-              {errors.password.type === "required" && <span>Password is required</span>}
-              {errors.password.type === "minLength" && <span>Minimum password length is 8 characters long</span>}
-            </div>
-          )
-        }
+        ref={register({
+          required:"Password is required", 
+          minLength: {value: 8, message: "Minimum password length is 8 characters long"}})}
+        />
+        <ErrorMessage as={<Error />} name="password" errors={errors}>
+        {message => <p> { message } </p> }
+        </ErrorMessage>
       </div>
 
       <div className="form-group">
@@ -70,16 +65,17 @@ const RegisterForm = ({onSubmit}) => {
           type="password"
           className="form-control"
           id="passwordConfirmation"
-          ref={register({required: true, minLength: 8})}
+          ref={register({
+            required: "Password confirmation is required",
+            minLength: {value: 8, message: "Minimum password confirmation length is 8 characters long"},
+            validate: {
+              sameAs: sameAs('password', getValues, "Pasword confirmation has to be the same as the password")
+            }
+          })}
         />
-        {
-          errors.passwordConfirmation && (
-            <div className="alert alert-danger">
-              {errors.passwordConfirmation.type === "required" && <span>Password is required</span>}
-              {errors.passwordConfirmation.type === "minLength" && <span>Minimum password length is 8 characters long</span>}
-            </div>
-          )
-        }
+        <ErrorMessage as={<Error />} name="passwordConfirmation" errors={errors}>
+        { message =>{return <p> { message } </p> }}
+        </ErrorMessage>
       </div>
       <button type="submit" className="btn btn-bwm-main">
         Submit
